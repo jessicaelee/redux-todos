@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import ContentEditable from 'react-contenteditable'
 
 function ToDoItem({ id, text }) {
 
@@ -9,9 +10,15 @@ function ToDoItem({ id, text }) {
         dispatch({ type: "DELETE", payload: id });
     };
 
+    const handleChange = (evt) => {
+        dispatch({ type: "UPDATE", payload: { task: evt.target.value, id: id } })
+    };
+
     return (
         <div >
-            <p>{text}</p>
+            <ContentEditable
+                html={text}
+                onChange={handleChange} />
             <button onClick={handleClick}>Delete</button>
         </div>
     )

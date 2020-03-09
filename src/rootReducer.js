@@ -6,6 +6,15 @@ function rootReducer(state = INITIAL_STATE, action) {
             return { ...state, tasks: [...state.tasks, action.payload] }
         case "DELETE":
             return { ...state, tasks: (state.tasks.filter(task => task.id !== action.payload)) }
+        case "UPDATE":
+            return {
+                ...state, tasks: state.tasks.map(task => {
+                    if (task.id === action.payload.id) {
+                        return { ...task, task: action.payload.task };
+                    }
+                    return task;
+                })
+            };
         default:
             console.warn("there is no action type: ", action.type);
             return state;
