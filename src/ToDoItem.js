@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ContentEditable from 'react-contenteditable'
+import './ToDoItem.css'
 
 function ToDoItem({ id, text, completed }) {
 
@@ -17,25 +18,31 @@ function ToDoItem({ id, text, completed }) {
     };
 
     const markCompleted = (evt) => {
-        console.log(evt)
         dispatch({ type: "UPDATE", payload: { task: text, completed: true, id: id } })
 
     }
 
-    let completedTask = <div> <strike>{text}</strike> <br /> </div>
+    let completedTask = <div className="todo-text"> <strike>{text}</strike> </div>
     let uncompletedTask = (<ContentEditable
         html={text}
         onChange={handleChange} />)
 
-    console.log("completed", completed)
-
     return (
-        <div >
+        <div className="todo-item">
 
             {completed ? completedTask : uncompletedTask}
-            <button onClick={handleClick}>Delete</button>
-            <button onClick={markCompleted}>Mark as completed</button>
-
+            <div style={{ float: 'right' }}>
+                <span className="todo-button todo-complete">
+                    <button onClick={markCompleted}>
+                        <i class="far fa-check-square fa-lg"></i>
+                    </button>
+                </span>
+                <span className="todo-button todo-delete">
+                    <button onClick={handleClick}>
+                        <i class="fas fa-trash fa-md text-danger"></i>
+                    </button>
+                </span>
+            </div>
         </div>
     );
 };

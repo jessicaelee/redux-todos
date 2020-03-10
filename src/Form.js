@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import uuid from 'uuid/v4';
 import { useDispatch } from 'react-redux';
+import './Form.css'
 
 function Form() {
     const INITIAL_STATE = { task: "" };
@@ -19,11 +20,11 @@ function Form() {
     };
 
     return (
-        <div>
+        <div className="todo-form">
             <form onSubmit={handleSubmit}>
                 <label htmlFor="task">Task: </label>
                 <input type="text" id="task" name="task" value={formData.task} onChange={handleChange} required />
-                <button>Add</button>
+                <button className="todo-form-button">Add</button>
             </form>
 
         </div>
