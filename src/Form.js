@@ -14,7 +14,7 @@ function Form() {
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        dispatch({ type: "ADD", payload: { ...formData, id: uuid() } })
+        dispatch({ type: "ADD", payload: { ...formData, id: uuid(), completed: false } })
         setFormData(INITIAL_STATE);
     };
 

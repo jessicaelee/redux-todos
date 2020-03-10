@@ -10,7 +10,8 @@ function rootReducer(state = INITIAL_STATE, action) {
             return {
                 ...state, tasks: state.tasks.map(task => {
                     if (task.id === action.payload.id) {
-                        return { ...task, task: action.payload.task };
+                        console.log(action.payload)
+                        return action.payload
                     }
                     return task;
                 })
